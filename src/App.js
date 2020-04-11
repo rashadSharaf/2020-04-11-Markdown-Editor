@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter } from "react-router-dom";
-let marked = require("marked")
-
-
+import marked from "marked";
 
 export default class App extends Component {
   constructor(props) {
@@ -20,9 +18,11 @@ export default class App extends Component {
   };
 
   render() {
-
     return (
-      <div>
+      <div style={{ display:"flex", flexDirection:"column", backgroundColor: "#bada55" }}>
+        <h1 style={{ width: "40%", margin: "0.1rem auto" }}>
+          Rashad MARKDOWN Engine
+        </h1>
         <HashRouter basename="/">
           <div style={{ display: "flex", flexDirection: "row" }}>
             <form
@@ -34,10 +34,9 @@ export default class App extends Component {
                 margin: "1rem",
               }}
             >
-              <label>Please Type in your code here</label>
+              <h4>Please Type in your MARKDOWN code here</h4>
               <textarea
-                rows="50"
-                style={{ padding: "1rem" }}
+                style={{ padding: "1rem", height: "50rem" }}
                 value={this.state.input}
                 onChange={this.updateInput}
               />
@@ -51,9 +50,15 @@ export default class App extends Component {
               }}
             >
               <h4> HTML OUTPUT </h4>
-              <div dangerouslySetInnerHTML = {{__html: marked(this.state.input)}}  style={{padding:"1rem", height: "100vh", border: "3px solid black" }}>
-                
-              </div>
+              <div
+                dangerouslySetInnerHTML={{ __html: marked(this.state.input) }}
+                style={{
+                  backgroundColor: "white",
+                  padding: "1rem",
+                  height: "50rem",
+                  border: "3px solid black",
+                }}
+              ></div>
             </div>
           </div>
         </HashRouter>
